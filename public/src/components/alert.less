@@ -1,0 +1,33 @@
+.alert {
+    position: fixed;
+    background: rgba(255,255,255,0.8);
+    padding: 6px;
+    border: 1px solid;
+    top: 20px;
+    left: 50%;
+    width: 70%;
+    transform: translateX(-50%);
+
+    &.error {
+        border-color: @error;
+        color: @error;
+    }
+
+    &.success {
+        border-color: @success;
+        color: @success;
+    }
+
+    .alert-close {
+        cursor: pointer;
+        color: @dark;
+        font-weight: bold;
+        position: absolute;
+        right: 10px;
+        font-style: normal;
+    }
+
+    .alert-msg {
+        margin: 0;
+    }
+}

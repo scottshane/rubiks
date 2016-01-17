@@ -1,0 +1,30 @@
+header {
+    position: relative;
+
+    .menu {
+        background: @primary;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.26);
+        color: @light;
+        font-size: 1.125rem;
+        font-weight: 300;
+        height: 100vh;
+        padding: 12px 36px;
+
+        a:link, a:visited {
+            color: @light;
+        }
+
+        ul li {
+            padding: 4px 0;
+        }
+    }
+
+    .menu-item {
+        padding: 3px 0;
+        display: block;
+
+        &.active {
+            opacity: .6;
+        }
+    }
+}

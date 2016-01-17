@@ -1,0 +1,50 @@
+.cubes-select {
+    color: @primary;
+
+    .cubes-menu {
+        padding: 4px;
+        -webkit-appearance: none;
+        outline: 0;
+        border-radius: 0;
+        background: #fff;
+        border: 0;
+        font-size: 1rem;
+
+        > select {
+            font-size: .875rem;
+        }
+    }
+}
+
+.clock {
+    color: @primary;
+}
+
+.existing-cubes {
+    margin-top: 24px;
+}
+
+.cube {
+    display: flex;
+}
+
+.cube > span {
+    width: 33.333%;
+}
+
+.solving {
+    color: @warning;
+}
+
+.existing-cubes .cube:focus .save,
+.existing-cubes .cube:focus .cancel{
+    visibility: visible;
+}
+
+.save, .cancel {
+    display: inline-block;
+    visibility: hidden;
+    cursor: pointer;
+    padding: 4px;
+    margin: 0 5px;
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>boilerplate</title>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="build/css/main.css">
+</head>
+<body>
+    <header>
+        <div class="menu">
+            <ul>
+                <li><a class="menu-item" href="#scores">Scores</a></li>
+                <li><a class="menu-item" href="#timer">Timer</a></li>
+                <li><a class="menu-item" href="#cubes">Cubes</a></li>
+            </ul>
+        </div>
+    </header>
+    <main>
+        <section class="timer hidden">
+            <h2 class="section-header">Timer</h2>
+            <div class="cubes-select">
+                <select class="cubes-menu">
+                    <option value="null">Choose a Cube</option>
+                </select>
+                <ul class="existing-cubes"></ul>
+                <button class="reset hidden">Reset</button>
+            </div>
+            <div class="clock">
+                <h3 class="timer-label">Inspection Time</h3>
+                <span class="hour">00</span>:<span class="min">00</span>:<span class="sec">00</span>
+            </div>
+            <div class="score hidden">
+                <form method="post">
+                    <input required class="username" type="text" placeholder="username" />
+                    <span class="cubetype"></span>
+                <span class="time"></span>
+                <button type="submit">Save Score</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="cubes hidden">
+            <h2 class="section-header">Cubes</h2>
+            <form method="post">
+                <label for="name">Cube Name</label>
+                <input required for="name" id="cube-name" type="text" placeholder="cube name" />
+                <label for="inspection-time">Inspection Time</label>
+                <input required for="inspectionTime" id="inspection-time" type="text" number="true" placeholder="15" />
+                <button type="submit">Save Cube</button>
+            </form>
+            <div class="existing-cubes">
+                <div class="cube">
+                    <span class="cube-name">Cube Name</span>
+                    <span class="cube-type">Cube Type</span>
+                    <span class="inspection-time">Inspection Time</span>
+                    <i class="save">✓</i>
+                    <i class="cancel">x</i>
+                </div>
+            </div>
+        </section>
+
+        <section class="scores hidden">
+            <h2 class="section-header">Scores</h2>
+            <div class="score">
+                <span class="username"></span>
+                <span class="cubetype"></span>
+                <span class="time"></span>
+            </div>
+        </section>
+    </main>
+
+    <div class="alert hidden">
+        <i class="alert-close">X</i>
+        <p class="alert-msg"></p>
+    </div>
+
+    <script src="build/build.js"></script>
+</body>
+</html>
