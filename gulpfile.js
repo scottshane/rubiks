@@ -64,7 +64,7 @@ gulp.task('style', function() {
         paths: [path.join(__dirname, 'components', 'includes'), path.join(__dirname, 'common', 'includes')]
     }))
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest('src/public/build/css'));
+    .pipe(gulp.dest('./public/build/css'));
 })
 
 gulp.task('build', function() { return compile(); });
