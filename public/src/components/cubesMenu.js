@@ -20,15 +20,17 @@ function handleGetCubes(data) {
     this.render();
 }
 
+function handleCubeSelection(e) {
+    const options = e.currentTarget.options;
+    const selectedIndex = options.selectedIndex;
+    const value = options[selectedIndex].value;
+    this.selectedCube = this.cubeData[value];
+    this.pubsub.publish('selectedCube', this.selectedCube);
+}
+
 function addListener() {
     const cubesMenuElem = document.querySelector('.cubes-menu');
-    cubesMenuElem.addEventListener('change', function(e) {
-        const options = e.currentTarget.options;
-        const selectedIndex = options.selectedIndex;
-        const value = options[selectedIndex].value;
-        this.selectedCube = this.cubeData[value];
-        this.pubsub.publish('selectedCube', this.selectedCube);
-    }.bind(this))
+    cubesMenuElem.addEventListener('change', this.handleCubeSelection);
 }
 
 const cubesMenu = Object.create(Component, {
@@ -39,6 +41,7 @@ const cubesMenu = Object.create(Component, {
     addListener: { value: addListener },
     cubeData: { writable: true, value: {} },
     handleGetCubes: { value: handleGetCubes },
+    handleCubeSelection: { value: handleCubeSelection },
     selectedCube: { writable: true, value: null }
 });
 

@@ -1,0 +1,40 @@
+.timer {
+    .cubes-select {
+        color: @primary;
+
+        > div {
+            position: relative;
+        }
+    }
+
+    .clock {
+        margin-top: 12px;
+
+        .timer-label {
+            .section-header-subhead;
+        }
+        
+        .clock-container {
+            .header-4;
+            color: @secondary;
+        }
+
+        &.solving {
+            .clock-container {
+                color: @primary;
+            }
+        }
+    }
+
+    .score {
+        fieldset {
+            float: left;
+            margin: 0 12px 24px 0;
+        }
+
+        button {
+            display: block;
+            clear: left;
+        }
+    }
+}

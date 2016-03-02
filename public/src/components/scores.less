@@ -1,0 +1,59 @@
+.scores {
+    .filter-scores {
+        display: flex;
+        max-height: 0;
+        transition: max-height .25s ease;
+        overflow: hidden;
+
+        .show-filters& {
+            max-height: 400px;
+        }
+
+        .filter {
+            padding: 0 12px 0 0;
+            width: 50%;
+
+            h3 {
+                .section-header-subhead;
+            }
+
+            label {
+                .text;
+            }
+
+            .filter-item {
+                float: left;
+                margin: 10px 10px 10px 0;
+            }
+        }
+    }
+    .scores-list {
+        li:first-child {
+            .table-header;
+        }
+    }
+
+    .score {
+        .row;
+
+        [data-sort] {
+            > i {
+                opacity: 0;
+                vertical-align: middle;
+                margin-top: -2px;
+                transition: opacity .25s ease;
+            }
+
+            &:hover {
+                cursor: pointer;
+                > i {
+                    opacity: 1;
+                }
+            }
+        }
+
+        > span {
+            width: 33.333%;
+        }
+    }
+}

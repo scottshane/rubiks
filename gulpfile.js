@@ -17,7 +17,7 @@ var bundlePaths = {
     srcLess: ['public/src/main.less'],
     componentsLess: 'public/src/components/**/*.less',
     commonLess: 'public/src/common/**/*.less',
-    html: ['public/src/*.html'],
+    html: ['public/*.html'],
     dest: 'public/src/build/js'
 }
 
@@ -53,7 +53,7 @@ gulp.task('connect', function() {
 });
 
 gulp.task('html', function() {
-    gulp.src('./public/src/*.html')
+    gulp.src('./public/*.html')
         .pipe(connect.reload());
 });
 

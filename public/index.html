@@ -3,70 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <title>boilerplate</title>
-    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700' rel='stylesheet' type='text/css'>
+    <link
+ href='http://fonts.googleapis.com/css?family=Roboto:400,400italic,500,500italic,700,700italic'
+ rel='stylesheet' type='text/css'>
+ <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="build/css/main.css">
 </head>
 <body>
     <header>
-        <div class="menu">
-            <ul>
-                <li><a class="menu-item" href="#scores">Scores</a></li>
-                <li><a class="menu-item" href="#timer">Timer</a></li>
-                <li><a class="menu-item" href="#cubes">Cubes</a></li>
-            </ul>
+        <div class="menu-bar">
+            <button class="nav-toggle-btn"><i class="material-icons">menu</i></button>
+            <h1 class="current-section">Current Section</h1>
         </div>
+        <nav class="nav">
+            <a class="nav-item" href="#scores">Scores</a>
+            <a class="nav-item" href="#timer">Timer</a>
+            <a class="nav-item" href="#cubes">Cubes</a>
+        </nav>
+        <span class="nav-overlay"></span>
     </header>
     <main>
         <section class="timer hidden">
             <h2 class="section-header">Timer</h2>
             <div class="cubes-select">
                 <select class="cubes-menu">
-                    <option value="null">Choose a Cube</option>
+                    <option class="" value="null">Choose a Cube</option>
                 </select>
-                <ul class="existing-cubes"></ul>
                 <button class="reset hidden">Reset</button>
             </div>
             <div class="clock">
                 <h3 class="timer-label">Inspection Time</h3>
-                <span class="hour">00</span>:<span class="min">00</span>:<span class="sec">00</span>
+                <div class="clock-container">
+                    <span class="hour">00</span>:<span class="min">00</span>:<span class="sec">00</span>
+                </div>
             </div>
             <div class="score hidden">
                 <form method="post">
-                    <input required class="username" type="text" placeholder="username" />
-                    <span class="cubetype"></span>
-                <span class="time"></span>
-                <button type="submit">Save Score</button>
+                    <fieldset>
+                        <label>username*</label>
+                        <input required class="username" type="text" />
+                    </fieldset>
+                        
+                    <fieldset>
+                        <label>time</label>
+                        <input disabled required class="time" type="text" />
+                    </fieldset>
+
+                    <fieldset>
+                        <label>cubetype</label>
+                        <input disabled required class="cubetype" type="text" />
+                    </fieldset>
+                    
+                    <button class="submit-score-btn" disabled type="submit">Save Score</button>
                 </form>
             </div>
         </section>
 
         <section class="cubes hidden">
             <h2 class="section-header">Cubes</h2>
-            <form method="post">
-                <label for="name">Cube Name</label>
-                <input required for="name" id="cube-name" type="text" placeholder="cube name" />
-                <label for="inspection-time">Inspection Time</label>
-                <input required for="inspectionTime" id="inspection-time" type="text" number="true" placeholder="15" />
+            <form class="new-cubes" method="post">
+                <h3 class="subhead add">Add a new cube</h3>
+                <fieldset>
+                    <label for="name">Cube Name*</label>
+                    <input required for="name" id="cube-name" type="text" />
+                </fieldset>
+                <fieldset>
+                    <label for="inspection-time">Inspection Time*</label>
+                    <input required for="inspectionTime" id="inspection-time" type="text" number="true" />
+                </fieldset> 
+                <span class="required">* Required field</span> 
                 <button type="submit">Save Cube</button>
             </form>
             <div class="existing-cubes">
+                <h3 class="subhead existing">Existing Cubes</h3>
+                <p class="instructions"><i class="material-icons edit">mode_edit</i> Click to edit.</p>
                 <div class="cube">
                     <span class="cube-name">Cube Name</span>
                     <span class="cube-type">Cube Type</span>
                     <span class="inspection-time">Inspection Time</span>
-                    <i class="save">✓</i>
-                    <i class="cancel">x</i>
+                    <i class="material-icons save">done</i>
+                    <i class="material-icons cancel">highlight_off</i>
                 </div>
             </div>
         </section>
 
         <section class="scores hidden">
             <h2 class="section-header">Scores</h2>
-            <div class="score">
-                <span class="username"></span>
-                <span class="cubetype"></span>
-                <span class="time"></span>
+            <button class="filter-scores-btn">Filter Scores</button>
+            <div class="filter-scores">
+                <div class="filter">
+                    <h3>filter user</h3>
+                    <fieldset class="filter-item">
+                        <input name="meh" class="filter-checkbox" type="checkbox">
+                        <label for="meh">label</label>
+                    </fieldset>
+                </div>
+                
             </div>
+            <ul class="scores-list">
+                <li class="score">
+                    <span class="username" data-sort="name">Username<i class="material-icons">arrow_drop_down</i></span>
+                    <span class="cubetype">Cubetype</span>
+                    <span class="time" data-sort="time">Time<i class="material-icons">arrow_drop_down</i></span>
+                </li>
+            </ul>
         </section>
     </main>
 

@@ -7,6 +7,8 @@ function init() {
     this.minElem = this.elem.querySelector('.min');
     this.secElem = this.elem.querySelector('.sec');
     this.scoreElem = this.elem.querySelector('.score');
+    this.usernameElem = this.elem.querySelector('.username');
+    this.submitScoreBtn = this.elem.querySelector('.submit-score-btn');
 
     this.addListeners();
     this.pubsub.subscribe('selectedCube', this.handleCubeSelection.bind(this));
@@ -20,11 +22,14 @@ function addListeners() {
 
     scoreForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        this.score.name = e.currentTarget.querySelector('.username').value;;
+        this.score.name = this.usernameElem.value;
         this.score.type = this.selectedCube.type;
         api.saveScore(JSON.stringify({score: this.score}));
-
+        e.currentTarget.blur();
     });
+
+    this.usernameElem.addEventListener('keyup', handleFormKeypress.bind(this));
+    
     document.addEventListener('keypress', (e) => {
         if (e.which !== 32) { return; }
         this.toggleTimer();
@@ -34,6 +39,16 @@ function addListeners() {
 function handleCubeSelection(data) {
     this.selectedCube = data;
     this.resetBtn.classList.remove('hidden');
+}
+
+function handleFormKeypress(e) {
+    const val = e.currentTarget.value.trim();
+
+    if (val.length) {
+        this.submitScoreBtn.removeAttribute('disabled');
+    } else {
+        this.submitScoreBtn.setAttribute('disabled', true);
+    }
 }
 
 function startTimer(endTime) {
@@ -121,9 +136,10 @@ function renderScore() {
     const cubetype = this.scoreElem.querySelector('.cubetype');
     const time = this.scoreElem.querySelector('.time');
 
-    cubetype.innerHTML = this.selectedCube.name;
-    time.innerHTML = `${this.score.time / 1000} seconds`;
+    cubetype.value = this.selectedCube.name;
+    time.value = `${this.score.time / 1000} seconds`;
     this.scoreElem.classList.remove('hidden');
+    this.usernameElem.focus();
 }
 
 function resetTimer() {
@@ -142,6 +158,8 @@ const timer = Object.create(Component, {
     minElem: { writable: true, value: null },
     secElem: { writable: true, value: null },
     scoreElem: { writable: true, value: null },
+    usernameElem: { writable: true, value: null },
+    submitScoreBtn: { writable: true, value: null },
     inspectionTime: { writable: true, value: 0 },
     inspectionTimer: { writable: true, value: false },
     score: { value: {} },

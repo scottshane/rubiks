@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 
 // routes
 app.get('/', function(req, res) {
-    console.log(path.join(__dirname, '../public/index.html'))
+    //console.log(path.join(__dirname, '../public/index.html'))
     res.sendfile(path.join(__dirname, '../public/index.html'));
 });
 
@@ -22,6 +22,8 @@ app.post('/api/cubes', saveCube);
 app.get('/api/scores', getScores);
 
 app.post('/api/scores', saveScore);
+
+app.get('/api/scorefilters', getScoreFilters);
 
 // api methods
 function getCubes(req, res) {
@@ -42,7 +44,6 @@ function getCubes(req, res) {
         var sorted = Object.keys(resp).sort(function(a, b) {
             return a.inspectionTime - b.inspectionTime;
         });
-        console.log(sorted)
         res.send(resp);
     });
 }
@@ -59,12 +60,34 @@ function getScores(req, res) {
 
             obj.name = arr[0];
             obj.type = arr[1];
-            obj.time = arr[2];
+            obj.time = parseInt(arr[2], 10);
             obj.id = arr[3];
             resp.push(obj);
         });
-        res.send(resp);
+        var scores = resp.reverse();
+        var filters = getScoreFilters(scores);
+        res.send({scores: scores, filters: filters});
     });
+}
+
+function getScoreFilters(scores) {
+    if (!scores || !scores.length) { return; }
+
+    var filterCats = Object.keys(scores[0]);
+    var filtersMap = {};
+
+    scores.forEach(function(sd) {
+        var keys = Object.keys(sd);
+        keys.forEach(function(k) {
+            if (!filtersMap[k]) {
+                filtersMap[k] = {};
+            }
+            filtersMap[k][sd[k]] = sd[k];
+        }, this);
+    }, this);
+
+    scoreFiltersMap = filtersMap;
+    return scoreFiltersMap;
 }
 
 function saveCube(req, res) {
@@ -128,8 +151,6 @@ function saveScore(req, res) {
         time = req.body.score.time;
         data = '\n' + username + ',' + type + ',' + time + ',' + id; 
 
-        console.log(data)
-
         fs.appendFile(path.join(__dirname, 'scores.txt'), data, function(err) {
             if (err) { throw err; }
             resp = 'ok'
@@ -141,6 +162,6 @@ function saveScore(req, res) {
 
 
 // start server
-app.listen(8081);
+app.listen(8080);
 
 module.exports = app;

@@ -1,44 +1,39 @@
 @import 'common/reset.less';
 @import 'common/colors.less';
+@import 'common/typography.less';
+@import 'common/icons.less';
+@import 'common/forms.less';
 @import 'components/alert.less';
-@import 'components/header.less';
+@import 'components/menu.less';
 @import 'components/cubes.less';
+@import 'components/timer.less';
+@import 'components/scores.less';
 
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Roboto', sans-serif;
+    font-family: "RobotoDraft","Roboto",sans-serif;
     font-weight: 300;
-    display: flex;
+    -webkit-font-smoothing: antialiased;
+}
+
+header {
+    position: fixed;
+    width: 100%;
+    z-index: 1;
 }
 
 main {
-    padding: 22px 0 0 36px;
+    position: relative;
+    top: 48px;
+    padding-left: 24px;
 }
 
-a:link, a:visited {
-    text-decoration: none;
-    color: inherit;
-    opacity: 1;
-    transition: opacity .25s ease;
-    color: @primary;
-}
-
-a:hover, a:active {
-    text-decoration: none;
-    opacity: .6;
-}
-
-.section-header {
-    font-size: 1.5rem;
-    font-weight: 400;
-    line-height: 2rem;
-    margin-bottom: 30px;
-    overflow: hidden;
-    padding-top: 100px;
-    color: @primary;
+a {
+    .text;
+    .link;
 }
 
 .hidden {
-    display: none;
+    display: none!important
 }

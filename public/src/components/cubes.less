@@ -1,50 +1,78 @@
-.cubes-select {
-    color: @primary;
+.cubes {
+    .subhead {
+        .section-header-subhead;
+    }
 
-    .cubes-menu {
-        padding: 4px;
-        -webkit-appearance: none;
-        outline: 0;
-        border-radius: 0;
-        background: #fff;
-        border: 0;
-        font-size: 1rem;
+    .new-cubes {
+        overflow: hidden;
 
-        > select {
-            font-size: .875rem;
+        fieldset {
+            float: left;
+            margin: 0 24px 24px 0;
+        }
+
+        .subhead.add {
+            margin-bottom: 36px;
+        }
+
+        .required {
+            .required-text;
+            clear: left;
+            display: block;
+            margin-bottom: 12px;
         }
     }
-}
 
-.clock {
-    color: @primary;
-}
+    .existing-cubes {
+        margin-top: 48px;
 
-.existing-cubes {
-    margin-top: 24px;
-}
+        div:first-of-type {
+            .table-header;
+        }
 
-.cube {
-    display: flex;
-}
+        .instructions {
+            .text;
+            color: @med-grey;
+            margin-bottom: 24px;
+        }
+    }
 
-.cube > span {
-    width: 33.333%;
-}
+    .cube {
+        .row;
+        .input;
 
-.solving {
-    color: @warning;
-}
+        > span {
+            width: 33.333%;
+        }
 
-.existing-cubes .cube:focus .save,
-.existing-cubes .cube:focus .cancel{
-    visibility: visible;
-}
+        &:focus {
+            .save, .cancel {
+                visibility: visible;
+            }
+        }
+    } 
 
-.save, .cancel {
-    display: inline-block;
-    visibility: hidden;
-    cursor: pointer;
-    padding: 4px;
-    margin: 0 5px;
+    .save, .cancel {
+        display: inline-block;
+        visibility: hidden;
+        cursor: pointer;
+        padding: 0 4px;
+        transition: opacity .25s ease;
+        color: @primary;
+
+        &:hover {
+            opacity: .6;
+        }
+    }
+
+    .cancel {
+        color: @error;
+    }
+
+    .edit {
+        color: @med-grey;
+        font-size: 16px;
+        display: inline;
+        vertical-align: text-bottom;
+    }
 }
