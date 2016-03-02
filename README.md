@@ -8,6 +8,12 @@ The master branch is framework-free. Call it my response to "framework fatigue" 
 
 I would also like to add future branches for React and Angular versions of the same app.
 
+## running locally
+- on the command line `npm install`
+- on the command line `gulp build`, cancel it when it's done
+- on the command line `npm start`
+- in the browser (chrome preferred) go to `http://localhost:8080`
+
 ## todo
 - add tests
 - move persistant data out of txt files
